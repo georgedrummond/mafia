@@ -2,8 +2,15 @@ require "version"
 require "thor/group"
 
 module Mafia
+  module Helpers
+    def camelize(string)
+      string.split(/[\W_]/).map {|c| c.capitalize}.join
+    end
+  end
+  
   class Generator < Thor::Group
     include Thor::Actions
+    include Mafia::Helpers
     
     argument :name
     
@@ -73,6 +80,5 @@ module Mafia
       say "Initializating git repo in #{target}"
       Dir.chdir(target) { `git init`; `git add .` }
     end
-
-  end # Generator
-end # Rackgem
+  end
+end

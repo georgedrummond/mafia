@@ -2,7 +2,7 @@ require "sinatra"
 require "haml"
 require "sass"
 
-module <%= name.capitalize %>
+module <%= camelize(name) %>
   class Application < Sinatra::Base
     set :public_folder, File.join(File.dirname(__FILE__), '<%= name %>', 'public')
     set :views, File.join(File.dirname(__FILE__), '<%= name %>', 'views')  

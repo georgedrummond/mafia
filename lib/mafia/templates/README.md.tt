@@ -1,6 +1,6 @@
-# <%= name.capitalize %>
+# <%= camelize(name) %>
 
-**<%= name.capitalize %>** is a [sinatra](http://www.sinatrarb.com) app/middleware that can be run standalone app or required as a gem.
+**<%= camelize(name) %>** is a [sinatra](http://www.sinatrarb.com) app/middleware that can be run standalone app or required as a gem.
 
 ## Running standalone
 Simply run the ``bundle`` and then ``rackup`` commands.

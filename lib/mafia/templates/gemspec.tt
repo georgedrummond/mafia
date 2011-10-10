@@ -4,7 +4,7 @@ require "version"
 
 Gem::Specification.new do |s|
   s.name        = "<%= config[:name] %>"
-  s.version     = <%= config[:name].capitalize %>::VERSION
+  s.version     = <%= camelize(config[:name]) %>::VERSION
   s.authors     = ["<%= config[:creator_name] %>"]
   s.email       = ["<%= config[:creator_email] %>"]
   s.homepage    = ""
