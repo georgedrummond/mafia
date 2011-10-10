@@ -7,18 +7,18 @@ module Mafia
     
     argument :name
     
-    @opts = {
-      :name => name
-      :creator_name => git_user_name = `git config user.name`.chomp
-      :email => git_user_email = `git config user.email`.chomp
-    }
-    
     def self.source_root
       File.expand_path(File.join(File.dirname(__FILE__), 'mafia/templates'))
     end
     
     def create_gemspec_file
-      template("gemspec.tt", "#{name}/#{name}.gemspec", @opts)
+      opts = {
+        :name => name,
+        :creator_name => `git config user.name`.chomp,
+        :creator_email => `git config user.email`.chomp
+      }
+      
+      template("gemspec.tt", "#{name}/#{name}.gemspec", opts)
     end
     
     def create_config_ru_file
@@ -46,7 +46,7 @@ module Mafia
     end
     
     def copy_readme
-      copy_file("README.md.tt", "#{name}/README.md")
+      template("README.md.tt", "#{name}/README.md")
     end
     
     def create_empty_files_and_directories
@@ -55,9 +55,22 @@ module Mafia
       empty_directory("#{name}/lib/#{name}/lib")      
     end
     
+    def create_license
+      if yes? "Use MIT License?"
+        
+        opts = {
+          :name => name,
+          :creator_name => `git config user.name`.chomp,
+          :creator_email => `git config user.email`.chomp
+        }
+        
+        template("LICENSE.tt", "#{name}/LICENSE", opts)
+      end
+    end
+    
     def initalize_git_repo
       target = File.join(Dir.pwd, name)
-      Bundler.ui.info "Initializating git repo in #{target}"
+      say "Initializating git repo in #{target}"
       Dir.chdir(target) { `git init`; `git add .` }
     end
 

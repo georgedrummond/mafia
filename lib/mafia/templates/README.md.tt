@@ -1,6 +1,6 @@
-# <%= name %>
+# <%= name.capitalize %>
 
-**<%= name %>** is a [sinatra](http://www.sinatrarb.com) app/middleware that can be run standalone app or required as a gem.
+**<%= name.capitalize %>** is a [sinatra](http://www.sinatrarb.com) app/middleware that can be run standalone app or required as a gem.
 
 ## Running standalone
 Simply run the ``bundle`` and then ``rackup`` commands.
@@ -8,6 +8,3 @@ Simply run the ``bundle`` and then ``rackup`` commands.
 ## Bundling as a gem
     gem build <%= name %>.gemspec
     sudo gem install <%= name %>-0.0.1.gem
-
-## License
-Please see License.txt
