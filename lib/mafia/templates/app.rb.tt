@@ -1,0 +1,14 @@
+require "sinatra"
+require "haml"
+require "sass"
+
+module <%= name.capitalize %>
+  class Application < Sinatra::Base
+    set :public, File.join(File.dirname(__FILE__), '<%= name %>', 'public')
+    set :views, File.join(File.dirname(__FILE__), '<%= name %>', 'views')  
+    
+    get "/admin/?" do
+      
+    end   
+  end
+end

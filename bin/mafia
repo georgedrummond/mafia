@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+
+require 'rubygems' unless defined?(Gem) # Useful only on --dev mode
+require 'bundler/setup' if %w(Gemfile .components).all? { |f| File.exist?(f) }
+
+require 'mafia'
+
+Mafia::Generator.start(ARGV)
