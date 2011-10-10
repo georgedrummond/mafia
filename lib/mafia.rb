@@ -7,12 +7,18 @@ module Mafia
     
     argument :name
     
+    @opts = {
+      :name => name
+      :creator_name => git_user_name = `git config user.name`.chomp
+      :email => git_user_email = `git config user.email`.chomp
+    }
+    
     def self.source_root
       File.expand_path(File.join(File.dirname(__FILE__), 'mafia/templates'))
     end
     
     def create_gemspec_file
-      template("gemspec.tt", "#{name}/#{name}.gemspec")
+      template("gemspec.tt", "#{name}/#{name}.gemspec", @opts)
     end
     
     def create_config_ru_file
@@ -40,7 +46,7 @@ module Mafia
     end
     
     def copy_readme
-      copy_file("README", "#{name}/README")
+      copy_file("README.md.tt", "#{name}/README.md")
     end
     
     def create_empty_files_and_directories

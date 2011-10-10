@@ -3,10 +3,10 @@ $:.push File.expand_path("../lib", __FILE__)
 require "version"
 
 Gem::Specification.new do |s|
-  s.name        = "<%= name %>"
-  s.version     = <%= name.capitalize %>::VERSION
-  s.authors     = ["George Drummond"]
-  s.email       = ["george@accountsapp.com"]
+  s.name        = "<%= config[:name] %>"
+  s.version     = <%= config[:name].capitalize %>::VERSION
+  s.authors     = ["<%= config[:creator_name] %>"]
+  s.email       = ["<%= config[:creator_email] %>"]
   s.homepage    = ""
   s.summary     = %q{TODO: Write a gem summary}
   s.description = %q{TODO: Write a gem description}
