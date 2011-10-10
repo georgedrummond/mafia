@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.version     = Mafia::VERSION
   s.authors     = ["George Drummond"]
   s.email       = ["george@accountsapp.com"]
-  s.homepage    = ""
+  s.homepage    = "git@github.com:georgedrummond/mafia.git"
   s.summary     = %q{Generator to create sinatra apps that are also gems}
   s.description = %q{Generator to create sinatra apps that are also gems}
 
