@@ -4,6 +4,7 @@ require "sass"
 
 module <%= camelize(name) %>
   class Application < Sinatra::Base
+      
     set :public_folder, File.join(File.dirname(__FILE__), 'public')
     set :views, File.join(File.dirname(__FILE__), 'views')  
     

@@ -62,8 +62,16 @@ module Mafia
       empty_directory("#{name}/lib/#{name}/lib")      
     end
     
+    def include_helpers
+      if yes? "\n\nInstall georgedrummond_sinatra_helpers gem into app?", :yellow
+        insert_into_file "#{name}/#{name}.gemspec", "  s.add_dependency \"georgedrummond_sinatra_helpers\"\n", :after => "s.add_dependency \"sass\"\n"
+        insert_into_file "#{name}/lib/#{name}/app.rb", "    include GeorgeDrummond::Sinatra::Helpers\n", :after => "class Application < Sinatra::Base\n"
+        insert_into_file "#{name}/lib/#{name}/app.rb", "require \"georgedrummond_sinatra_helpers\"\n", :after => "require \"sass\"\n"
+      end
+    end
+    
     def create_license
-      if yes? "Use MIT License?"
+      if yes? "\n\nUse MIT License?", :yellow
         
         opts = {
           :name => name,
@@ -75,10 +83,35 @@ module Mafia
       end
     end
     
+    def run_bundle_command
+      target = File.join(Dir.pwd, name)
+      say "\n\nRunning Bundler", :yellow
+      Dir.chdir(target) { 
+        run "bundle install", :verbose => false
+      }
+    end
+    
     def initalize_git_repo
       target = File.join(Dir.pwd, name)
-      say "Initializating git repo in #{target}"
-      Dir.chdir(target) { `git init`; `git add .` }
+      say "\n\nInitializating git repo in #{target}", :yellow
+      Dir.chdir(target) { 
+        run "git init", :verbose => false
+        run "git add .", :verbose => false
+      }
+    end
+    
+    def show_complete_message
+      complete = <<-COMPLETE
+      
+      
+        Sinatra gem has been generated
+        
+        For help using sinatra please visit www.sinatrarb.com
+        
+        COMPLETE
+      
+      say complete, :red
+        
     end
   end
 end
