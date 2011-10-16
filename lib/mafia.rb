@@ -83,20 +83,20 @@ module Mafia
       end
     end
     
-    def run_bundle_command
-      target = File.join(Dir.pwd, name)
-      say "\n\nRunning Bundler", :yellow
-      Dir.chdir(target) { 
-        run "bundle install", :verbose => false
-      }
-    end
-    
     def initalize_git_repo
       target = File.join(Dir.pwd, name)
       say "\n\nInitializating git repo in #{target}", :yellow
       Dir.chdir(target) { 
         run "git init", :verbose => false
         run "git add .", :verbose => false
+      }
+    end
+    
+    def run_bundle_command
+      target = File.join(Dir.pwd, name)
+      say "\n\nRunning Bundler", :yellow
+      Dir.chdir(target) { 
+        run "bundle install", :verbose => false
       }
     end
     
