@@ -48,8 +48,8 @@ module Mafia
       copy_file("Rakefile", "#{name}/Rakefile")
     end
     
-    def copy_gemfile
-      copy_file("Gemfile", "#{name}/Gemfile")
+    def create_gemfile
+      template("Gemfile.tt", "#{name}/Gemfile")
     end
     
     def copy_readme
