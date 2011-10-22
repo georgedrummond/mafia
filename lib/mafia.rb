@@ -35,7 +35,13 @@ module Mafia
     def create_version_file
       template("version.rb.tt", "#{name}/lib/version.rb")
     end
-    
+
+    def create_bin_file
+      if yes? "\n\nCreate a binary to run your application?", :yellow
+        template("bin.tt", "#{name}/bin/#{name}")
+      end
+    end
+
     def create_gem_file
       template("gem.rb.tt", "#{name}/lib/#{name}.rb")
     end
