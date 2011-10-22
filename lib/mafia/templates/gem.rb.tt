@@ -1,2 +1,2 @@
-require "./lib/version"
-require "./lib/<%= name %>/app.rb"
+require "version"
+require "<%= name %>/app"
