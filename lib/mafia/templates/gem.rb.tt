@@ -1,2 +1,3 @@
-require "./lib/version"
-require "./lib/<%= name %>/app.rb"
+$:.unshift File.dirname(__FILE__)
+require "version"
+require "<%= name %>/app.rb"
