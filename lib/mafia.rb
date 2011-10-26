@@ -37,7 +37,7 @@ module Mafia
     end
 
     def create_bin_file
-      if yes? "\n\nCreate a binary to run your application?", :yellow
+      if yes? "\n\nCreate a binary to run your application?", :green
         template("bin.tt", "#{name}/bin/#{name}")
       end
     end
@@ -69,7 +69,7 @@ module Mafia
     end
     
     def include_helpers
-      if yes? "\n\nInstall georgedrummond_sinatra_helpers gem into app?", :yellow
+      if yes? "\n\nInstall georgedrummond_sinatra_helpers gem into app?", :green
         insert_into_file "#{name}/#{name}.gemspec", "  s.add_dependency \"georgedrummond_sinatra_helpers\"\n", :after => "s.add_dependency \"sass\"\n"
         insert_into_file "#{name}/lib/#{name}/app.rb", "    include GeorgeDrummond::Sinatra::Helpers\n", :after => "class Application < Sinatra::Base\n"
         insert_into_file "#{name}/lib/#{name}/app.rb", "require \"georgedrummond_sinatra_helpers\"\n", :after => "require \"sass\"\n"
@@ -77,7 +77,7 @@ module Mafia
     end
     
     def create_license
-      if yes? "\n\nUse MIT License?", :yellow
+      if yes? "\n\nUse MIT License?", :green
         
         opts = {
           :name => name,
@@ -91,7 +91,7 @@ module Mafia
     
     def initalize_git_repo
       target = File.join(Dir.pwd, name)
-      say "\n\nInitializating git repo in #{target}", :yellow
+      say "\n\nInitializating git repo in #{target}", :green
       Dir.chdir(target) { 
         run "git init", :verbose => false
         run "git add .", :verbose => false
@@ -100,23 +100,22 @@ module Mafia
     
     def run_bundle_command
       target = File.join(Dir.pwd, name)
-      say "\n\nRunning Bundler", :yellow
+      say "\n\nRunning Bundler", :green
       Dir.chdir(target) { 
         run "bundle install", :verbose => false
       }
     end
     
     def show_complete_message
-      complete = <<-COMPLETE
+      complete = <<-COMPLETE   
       
-      
-        Sinatra gem has been generated
-        
-        For help using sinatra please visit www.sinatrarb.com
-        
-        COMPLETE
-      
-      say complete, :red
+Sinatra gem has been generated
+
+For help using sinatra please visit www.sinatrarb.com
+
+COMPLETE
+   
+      say complete, :green
         
     end
   end
