@@ -4,10 +4,13 @@ require "sass"
 
 module <%= camelize(name) %>
   class Application < Sinatra::Base
-      
+
     set :public_folder, File.join(File.dirname(__FILE__), 'public')
-    set :views, File.join(File.dirname(__FILE__), 'views')  
-    
-    # Your actions go here  
+    set :views, File.join(File.dirname(__FILE__), 'views')
+
+    # Your actions go here
+    get '/' do
+      "Hello World. I am the template <%= camelize(name) %> application."
+    end
   end
 end

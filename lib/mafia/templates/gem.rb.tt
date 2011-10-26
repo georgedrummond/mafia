@@ -1,3 +1,8 @@
+<<<<<<< HEAD
 $:.unshift File.dirname(__FILE__)
 require "version"
 require "<%= name %>/app.rb"
+=======
+require "version"
+require "<%= name %>/app"
+>>>>>>> c86ce73715b1a50cfbe767fb819a280a1ef28a09
