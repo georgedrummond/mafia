@@ -39,6 +39,7 @@ module Mafia
     def create_bin_file
       if yes? "\n\nCreate a binary to run your application?", :green
         template("bin.tt", "#{name}/bin/#{name}")
+        insert_into_file "#{name}/#{name}.gemspec", "  s.add_dependency \"OptionParser\"\n", :after => "s.add_dependency \"sass\"\n"
       end
     end
 
