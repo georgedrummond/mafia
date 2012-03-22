@@ -1,3 +1,3 @@
 module Mafia
-  VERSION = "0.1.4.pre"
+  VERSION = "0.1.3"
 end

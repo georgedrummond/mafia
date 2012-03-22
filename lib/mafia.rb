@@ -68,14 +68,6 @@ module Mafia
       empty_directory("#{name}/lib/#{name}/lib")      
     end
     
-    def include_helpers
-      if yes? "\n\nInstall georgedrummond_sinatra_helpers gem into app?", :green
-        insert_into_file "#{name}/#{name}.gemspec", "  s.add_dependency \"georgedrummond_sinatra_helpers\"\n", :after => "s.add_dependency \"sass\"\n"
-        insert_into_file "#{name}/lib/#{name}/app.rb", "    include GeorgeDrummond::Sinatra::Helpers\n", :after => "class Application < Sinatra::Base\n"
-        insert_into_file "#{name}/lib/#{name}/app.rb", "require \"georgedrummond_sinatra_helpers\"\n", :after => "require \"sass\"\n"
-      end
-    end
-    
     def create_license
       if yes? "\n\nUse MIT License?", :green
         
