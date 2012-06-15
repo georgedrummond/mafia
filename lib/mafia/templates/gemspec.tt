@@ -10,10 +10,9 @@ Gem::Specification.new do |s|
   s.homepage    = ""
   s.summary     = %q{TODO: Write a gem summary}
   s.description = %q{TODO: Write a gem description}
-
-  s.files         = Dir[File.join(File.dirname(__FILE__), '**', '**')].find_all {|f| File.file?(f) }
-  s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
-  s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
+  s.files         = Dir["lib/**/*"] + ["Rakefile", "README.md", "Gemfile", "Gemfile.lock", "config.ru"]
+  s.test_files    = Dir["{test, spec, features}/**/*"]
+  s.executables   = Dir["bin/*"].entries.map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
 
   s.add_dependency "sinatra", "1.3.1"

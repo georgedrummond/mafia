@@ -36,12 +36,6 @@ module Mafia
       template("version.rb.tt", "#{name}/lib/version.rb")
     end
 
-    def create_bin_file
-      if yes? "\n\nCreate a binary to run your application?", :green
-        template("bin.tt", "#{name}/bin/#{name}")
-      end
-    end
-
     def create_gem_file
       template("gem.rb.tt", "#{name}/lib/#{name}.rb")
     end
@@ -66,6 +60,13 @@ module Mafia
       empty_directory("#{name}/lib/#{name}/public")
       empty_directory("#{name}/lib/#{name}/views")
       empty_directory("#{name}/lib/#{name}/lib")      
+    end
+    
+    def create_bin_file
+      if yes? "\n\nCreate a binary to run your application?", :green
+        template("bin.tt", "#{name}/bin/#{name}")
+        inject_into_file "#{name}/#{name}.gemspec", "\n  s.add_dependency \"thor\"", :after => "s.add_dependency \"sinatra\", \"1.3.1\""
+      end
     end
     
     def create_license
